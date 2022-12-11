@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-view-employee',
@@ -6,7 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-employee.component.css']
 })
 export class ViewEmployeeComponent {
-  employee:any=[]
+  
+   
+   
+constructor(private api:ApiService){
+  this.api.fetchemployees().subscribe(
+    (response:any)=>{
+      this.employees=response;
+    }
+  )
+}
+  employees:any=[]
 
 
 }
